@@ -1,0 +1,16 @@
+[{
+
+    "name" : "User1",
+    "username" : "user1",
+    "email" : "user1@gmail.com",
+    "password" : "$2a$12$UrR55jkxmAyMx..5FCHOLeVtgIDyj/T3yjZklri52/ZnNXTHsuTw2"
+
+},
+{
+    "name" : "User2",
+    "username" : "user2",
+    "email" : "user2@gmail.com",
+    "password" : "$2a$12$NUvdG/ooRIf.NArybQSodeabGEuccLTGCM2jHLAVIaJtwJ4eJ/Lz6"
+
+}
+]
