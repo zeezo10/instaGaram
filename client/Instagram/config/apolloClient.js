@@ -1,15 +1,13 @@
 import {
   ApolloClient,
   InMemoryCache,
-  ApolloProvider,
-  gql,
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import * as SecureStore from "expo-secure-store";
 
 const httpLink = createHttpLink({
-  uri: "https://api.visionaryvibes.site",
+  uri: "https://c49e-2001-448a-10e7-366d-49f-12fa-2d33-6a63.ngrok-free.app",
 });
 
 const authLink = setContext(async (_, { headers }) => {

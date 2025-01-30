@@ -52,15 +52,13 @@ export default function Card({ post, navigation }) {
 
   return (
     <View
+    
       style={{
         height: 650,
         width: "100%",
         backgroundColor: "white",
-        marginBottom: 10,
         flexDirection: "column",
-        padding: 10,
-        borderColor: "grey",
-        borderBottomWidth: 2,
+     
       }}
     >
       <View
@@ -113,7 +111,7 @@ export default function Card({ post, navigation }) {
             gap: 5,
           }}
         >
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingHorizontal:10 }}>
             <Pressable
               style={{
                 height: 30,
@@ -154,7 +152,7 @@ export default function Card({ post, navigation }) {
           </View>
         </View>
 
-        <View style={{ flex: 2, borderTopWidth: 2, borderColor: "grey" }}>
+        <View style={{ flex: 2,}}>
           <View style={{ paddingLeft: 10, paddingTop: 6, paddingBottom: 6, flexDirection:"row", gap:7}}>
             <Text style={{ fontWeight: "bold" }}>{post.author.username}</Text>
             <Text style={{ }}>{post.content}</Text>
@@ -172,6 +170,7 @@ export default function Card({ post, navigation }) {
                       margin: 5,
                       gap: 10,
                     }}
+                    key={index}
                   >
                     <View
                       key={el.content + el.createdAt}

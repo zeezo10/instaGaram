@@ -41,13 +41,9 @@ const HeaderButton = ({ onPress }) => (
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
-function MainTab({navigation}) {
-
-
-  
+function MainTab({ navigation }) {
   const renderHeaderButton = () => (
-    <HeaderButton onPress={() => navigation.navigate("Logout") }  />
+    <HeaderButton onPress={() => navigation.navigate("Logout")} />
   );
 
   return (
@@ -93,7 +89,7 @@ function MainTab({navigation}) {
         />
         <Tab.Screen
           name="Profile"
-          options={{  title: "", headerRight: renderHeaderButton }}
+          options={{ title: "", headerRight: renderHeaderButton }}
           component={Profile}
         />
       </Tab.Navigator>
@@ -101,14 +97,15 @@ function MainTab({navigation}) {
   );
 }
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext(false);
 
-export default function App({navigation}) {
-  const [isLogin, setLogin] = useState();
+export default function App({ navigation }) {
+  const [isLogin, setLogin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const cekToken = async () => {
     const access_token = await SecureStore.getItemAsync("access_token");
+    await SecureStore.deleteItemAsync("access_token")
     if (access_token) {
       setLogin(true);
     }
@@ -127,22 +124,24 @@ export default function App({navigation}) {
     );
   }
 
-  
-
   return (
     <AuthContext.Provider value={{ isLogin, setLogin }}>
       <ApolloProvider client={client}>
         <NavigationContainer>
           <Stack.Navigator>
-            {!isLogin ? (
-              <Stack.Screen name="Login" component={Login} options={{headerShown : false}} />
-            ) : (
+            {isLogin ? (
               <Stack.Screen
                 name="Home"
                 component={MainTab}
                 options={{
-                  title: "InstaGaram",
+                  title: 'Istagaram',
                 }}
+              />
+            ) : (
+              <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ headerShown: false }}
               />
             )}
             <Stack.Screen name="Register" component={Register} />
@@ -164,15 +163,13 @@ export default function App({navigation}) {
               />
             </Stack.Group>
 
-            <Stack.Group screenOptions={{ presentation: "transparentModal" }}>
+            {/* <Stack.Group screenOptions={{ presentation: "transparentModal" }}>
               <Stack.Screen
                 name="Logout"
                 component={SideBar}
                 options={{ headerShown: false }}
               />
-            </Stack.Group>
-
-
+            </Stack.Group> */}
           </Stack.Navigator>
         </NavigationContainer>
       </ApolloProvider>

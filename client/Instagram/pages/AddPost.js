@@ -101,7 +101,7 @@ export default function AddPost({ navigation }) {
           <TextInput
             placeholder="Title"
             style={{
-              backgroundColor: "gainsboro",
+              backgroundColor: "#f2f2f2",
               marginTop: 30,
               height: 40,
               width: "100%",
@@ -113,7 +113,7 @@ export default function AddPost({ navigation }) {
           <TextInput
             placeholder="imgUrl"
             style={{
-              backgroundColor: "gainsboro",
+              backgroundColor: "#f2f2f2",
               marginTop: 30,
               height: 40,
               width: "100%",
@@ -125,7 +125,7 @@ export default function AddPost({ navigation }) {
           <TextInput
             placeholder="tags"
             style={{
-              backgroundColor: "gainsboro",
+              backgroundColor: "#f2f2f2",
               marginTop: 30,
               height: 40,
               width: "100%",

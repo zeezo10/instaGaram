@@ -40,16 +40,14 @@ export default function Comment({ route, navigation }) {
     refetchQueries: [GET_POSTS, GET_POST_BY_ID],
   });
 
-//=-------------------------------
+  //=-------------------------------
 
   if (loading) return MyComponent;
 
   if (error) return `Error! ${error}`;
 
-  const comments = data.postById.comments.slice().reverse(); 
-  
+  const comments = data.postById.comments.slice().reverse();
 
- 
   const handelAddComment = async () => {
     try {
       const result = await doAddComment({
@@ -68,12 +66,14 @@ export default function Comment({ route, navigation }) {
 
   return (
     <SafeAreaView>
-       <Pressable style={{backgroundColor:"rad", height:200}} onPress={() => navigation.goBack()
-    }></Pressable>
+      <Pressable
+        style={{ backgroundColor: "rad", height: 200 }}
+        onPress={() => navigation.goBack()}
+      ></Pressable>
       <View
         style={{
           height: "75%",
-          
+
           backgroundColor: "rgba(255, 255, 255, 0.99)",
         }}
       >
@@ -86,10 +86,10 @@ export default function Comment({ route, navigation }) {
         >
           <TextInput
             style={{
-              borderBottomColor: "black",
-              flex: 5,
+              borderBottomColor: "grey",
+              flex: 7,
               borderRadius: 0,
-              borderBottomWidth: 2,
+              borderBottomWidth: 1,
             }}
             value={comment}
             onChangeText={setComment}
@@ -109,20 +109,36 @@ export default function Comment({ route, navigation }) {
                 alignItems: "center",
               }}
             >
-              <Octicons name="paper-airplane" size={40} color="black" />
+              <Octicons name="paper-airplane" size={30} color="grey" />
             </Pressable>
           </View>
         </View>
         <View style={{ height: 558, padding: 10, gap: 10 }}>
           <FlatList
             data={comments}
-            renderItem={({ item }) => (
-              <View style={{ borderBottomWidth : 2, borderColor:"grey", flexDirection:"row",gap:10, height:40 , alignItems:"center"}}>
+            renderItem={({ item, index }) => (
+              <View
+                style={{
+                  flexDirection: "row",
+                  gap: 10,
+                  height: 60,
+                  alignItems: "center",
+                }}
+                key={index}
+              >
+                <View
+                  style={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: "pink",
+                    borderRadius: 100,
+                  }}
+                />
                 <Text>{item.username} :</Text>
                 <Text>{item.content}</Text>
               </View>
             )}
-            keyExtractor={(item) => item._id}
+            keyExtractor={(item, index) => item._id || index.toString()}
           />
         </View>
       </View>

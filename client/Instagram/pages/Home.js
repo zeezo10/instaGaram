@@ -57,9 +57,11 @@ export default function Home({ navigation, route }) {
 
   const { setLogin } = useContext(AuthContext);
 
-  if (loading) return MyComponent;
+  if (loading) return <MyComponent/>;
 
-  if (error) return `Error! ${error}`;
+  if (error) return (
+    <Text>{error}</Text>
+  );
 
   let post = data.posts;
 
@@ -70,8 +72,8 @@ export default function Home({ navigation, route }) {
       <View style={{ width: "100%", flex: 10 }}>
         <FlatList
           data={post}
-          renderItem={({ item }) => (
-            <Card post={item} key={item._id} navigation={navigation} />
+          renderItem={({ item ,index }) => (
+            <Card post={item} key={index} navigation={navigation} />
           )}
           keyExtractor={(item) => item._id}
           showsVerticalScrollIndicator={false}

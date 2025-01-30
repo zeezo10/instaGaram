@@ -8,10 +8,12 @@ import {
   TextInput,
   Button,
   Pressable,
+  Dimensions,
 } from "react-native";
 import * as SecureStore from "expo-secure-store";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from "react-native-vector-icons/Ionicons";
 
+const screenWidth = Dimensions.get("window").width;
 
 const MyComponent = () => (
   <ActivityIndicator animating={true} color={MD2Colors.red800} />
@@ -103,13 +105,13 @@ export default function Search({ navigation, route }) {
           alignItems: "center",
           gap: 5,
           margin: 10,
-          borderBottomWidth : 2
+       
         }}
       >
         <TextInput
           style={{
-            backgroundColor: "gainsboro",
-            height: 50,
+            backgroundColor: "#f2f2f2",
+            height: 45,
             paddingLeft: 20,
             flex: 4,
           }}
@@ -117,11 +119,12 @@ export default function Search({ navigation, route }) {
           value={username}
           onChangeText={setUsername}
         ></TextInput>
-        <View style={{ flex: 1}}>
-          <Pressable onPress={handleSearch}
-            style={{ flexDirection:"row" ,justifyContent:"center"}}
+        <View style={{ flex: 1 }}>
+          <Pressable
+            onPress={handleSearch}
+            style={{ flexDirection: "row", justifyContent: "center" }}
           >
-            <Ionicons name="search" size={40} color="black" />
+            <Ionicons name="search" size={40} color="grey" />
           </Pressable>
         </View>
       </View>
@@ -129,7 +132,7 @@ export default function Search({ navigation, route }) {
         <View
           style={{
             height: "100%",
-            margin: 10,
+
             gap: 5,
             backgroundColor: "white",
           }}
@@ -144,9 +147,10 @@ export default function Search({ navigation, route }) {
                 height: 120,
                 flexDirection: "row",
                 alignItems: "center",
-                padding: 5,
-                gap: 15,
+
                 justifyContent: "space-around",
+
+                width: screenWidth,
               }}
             >
               <View
@@ -161,9 +165,7 @@ export default function Search({ navigation, route }) {
               ></View>
               <View
                 style={{
-                  paddingLeft: 10,
-                  paddingRight: 10,
-                  width: 200,
+                  width: 100,
                   height: 50,
                   flexDirection: "row",
                   alignItems: "center",
