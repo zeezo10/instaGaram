@@ -1,4 +1,4 @@
-const redis = require("../config/redis");
+// const redis = require("../config/redis");
 const Post = require("../model/posts");
 
 const postTypeDefs = `#graphql
@@ -55,16 +55,16 @@ const postTypeDefs = `#graphql
 const postResolvers = {
   Query: {
     posts: async (parent, args, contextValue) => {
-      await redis.del("all_post");
+      // await redis.del("all_post");
 
       const user = await contextValue.isAuth();
 
-      const getAllPost = await redis.get("all_post");
-      if (getAllPost) {
-        return JSON.parse(getAllPost);
-      }
+      // const getAllPost = await redis.get("all_post");
+      // if (getAllPost) {
+      //   return JSON.parse(getAllPost);
+      // }
       const result = await Post.findAll();
-      await redis.set("all_post", JSON.stringify(result));
+      // await redis.set("all_post", JSON.stringify(result));
       return result;
     },
 
@@ -92,7 +92,7 @@ const postResolvers = {
 
       const result = await Post.addPost(newPost);
 
-      await redis.del("all_post");
+      // await redis.del("all_post");
 
       return result;
     },
@@ -106,7 +106,7 @@ const postResolvers = {
       }
 
       await Post.deletePost(postId);
-      await redis.del("all_post");
+      // await redis.del("all_post");
     },
 
     addLike: async (parent, { postId, username }, contextValue) => {
@@ -135,7 +135,7 @@ const postResolvers = {
         }
       );
 
-      await redis.del("all_post");
+      // await redis.del("all_post");
 
       return "add Like successful";
     },
@@ -160,7 +160,7 @@ const postResolvers = {
           },
         }
       );
-      await redis.del("all_post");
+      // await redis.del("all_post");
 
       return "add Comment successful";
     },
